@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: flowbit-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+
+  api:
+    build: ./api
+    container_name: flowbit-api
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/flowbit?authSource=admin
+      - JWT_SECRET=your-super-secret-jwt-key
+      - N8N_WEBHOOK_SECRET=shared-webhook-secret
+      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/ticket-created
+    depends_on:
+      - mongodb
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+
+  client:
+    build: ./client
+    container_name: flowbit-client
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+
+  support-tickets-app:
+    build: ./support-tickets-app
+    container_name: flowbit-support-tickets
+    ports:
+      - "3001:3001"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+    volumes:
+      - ./support-tickets-app:/app
+      - /app/node_modules
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: flowbit-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  mongodb_data:
+  n8n_data:

@@ -1,0 +1,10 @@
+[
+  {
+    "customerId": "logisticsco",
+    "screens": ["http://localhost:3001/remoteEntry.js"]
+  },
+  {
+    "customerId": "retailgmbh", 
+    "screens": ["http://localhost:3001/remoteEntry.js"]
+  }
+]
