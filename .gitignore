@@ -1,0 +1,20 @@
+# Node
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# dotenv files
+.env
+.env.*
+
+# OS files
+.DS_Store
+
+# Output build
+build/
+dist/
+
+# Docker volumes (optional)
+*.pid
