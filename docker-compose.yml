@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   mongodb:
@@ -43,7 +44,7 @@ services:
     build: ./support-tickets-app
     container_name: flowbit-support-tickets
     ports:
-      - "3001:3001"
+      - "3009:3009"
     environment:
       - REACT_APP_API_URL=http://localhost:5001
     volumes:

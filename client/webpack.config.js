@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('@module-federation/webpack');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
   mode: 'development',
@@ -27,7 +27,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'client',
       remotes: {
-        supportTicketsApp: 'supportTicketsApp@http://localhost:3001/remoteEntry.js',
+        supportTicketsApp: 'supportTicketsApp@http://localhost:3002/remoteEntry.js',
       },
     }),
     new HtmlWebpackPlugin({

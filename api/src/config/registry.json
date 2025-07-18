@@ -1,10 +1,10 @@
 [
   {
     "customerId": "logisticsco",
-    "screens": ["http://localhost:3001/remoteEntry.js"]
+    "screens": ["http://localhost:3003/remoteEntry.js"]
   },
   {
-    "customerId": "retailgmbh", 
-    "screens": ["http://localhost:3001/remoteEntry.js"]
+    "customerId": "retailgmbh",
+    "screens": ["http://localhost:3010/remoteEntry.js"]
   }
 ]

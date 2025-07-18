@@ -1,13 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 
-
-
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
   devServer: {
-    port: 3001,
+    port: 3009,
     host: '0.0.0.0',
   },
   module: {
